@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phú Trần Studio | Kiến trúc & Thiết kế Nội thất</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#121212',
+                            gold: '#C5A880',
+                            charcoal: '#1E1E1E',
+                            gray: '#888888',
+                            light: '#F9F9F9'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-brand-dark text-white font-sans antialiased selection:bg-brand-gold selection:text-black">
+
+    <!-- Header / Navigation -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-brand-dark/80 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="text-xl font-bold tracking-widest uppercase text-white">
+                Phú Trần <span class="text-brand-gold font-light">Studio</span>
+            </a>
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+                <a href="#about" class="text-brand-gray hover:text-white transition">Về chúng tôi</a>
+                <a href="#services" class="text-brand-gray hover:text-white transition">Lĩnh vực</a>
+                <a href="#portfolio" class="text-brand-gray hover:text-white transition">Dự án</a>
+                <a href="#contact" class="px-5 py-2.5 border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-black transition duration-300">Liên hệ tư vấn</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center bg-brand-charcoal overflow-hidden pt-20">
+        <div class="absolute inset-0 z-0 opacity-40 bg-[radial-gradient(#C5A880_1px,transparent_1px)] [background-size:24px_24px]"></div>
+        <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
+            <span class="text-brand-gold text-sm uppercase tracking-[0.3em] font-medium block mb-4">Kiến trúc & Nội thất cao cấp</span>
+            <h1 class="text-4xl md:text-6xl font-light tracking-tight leading-tight mb-6">
+                Ki kiến tạo không gian, <br><span class="font-normal text-white">Định hình phong cách sống.</span>
+            </h1>
+            <p class="text-brand-gray max-w-2xl mx-auto text-base md:text-lg font-light mb-10 leading-relaxed">
+                Chuyên thiết kế và thi công trọn gói biệt thự, căn hộ cao cấp và không gian thương mại với tư duy thẩm mỹ tối giản, hiện đại và tinh tế.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#portfolio" class="w-full sm:w-auto px-8 py-4 bg-brand-gold text-black font-semibold hover:bg-white transition duration-300 text-sm tracking-wider uppercase">Xem dự án tiêu biểu</a>
+                <a href="#contact" class="w-full sm:w-auto px-8 py-4 border border-white/20 text-white font-medium hover:border-brand-gold hover:text-brand-gold transition duration-300 text-sm tracking-wider uppercase">Hợp tác cùng chúng tôi</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-28 bg-[#0D0D0D]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-16">
+                <span class="text-brand-gold text-xs uppercase tracking-[0.2em] block mb-2">Chuyên môn</span>
+                <h2 class="text-3xl md:text-4xl font-light">Dịch vụ thiết kế & thi công</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="p-8 bg-brand-charcoal/50 border border-white/5 hover:border-brand-gold/50 transition duration-300 group">
+                    <div class="text-brand-gold text-2xl font-light mb-4">01</div>
+                    <h3 class="text-xl font-medium mb-3 group-hover:text-brand-gold transition">Thiết kế Kiến trúc</h3>
+                    <p class="text-brand-gray text-sm leading-relaxed font-light">Giải pháp không gian tổng thể tối ưu công năng, hài hòa với phong thủy, ánh sáng tự nhiên và cảnh quan xung quanh.</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="p-8 bg-brand-charcoal/50 border border-white/5 hover:border-brand-gold/50 transition duration-300 group">
+                    <div class="text-brand-gold text-2xl font-light mb-4">02</div>
+                    <h3 class="text-xl font-medium mb-3 group-hover:text-brand-gold transition">Thiết kế Nội thất</h3>
+                    <p class="text-brand-gray text-sm leading-relaxed font-light">Định hình phong cách Tân cổ điển, Tối giản hiện đại. Xử lý tỉ mỉ vật liệu cao cấp như đá nung kết, gỗ óc chó, PVD gold.</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="p-8 bg-brand-charcoal/50 border border-white/5 hover:border-brand-gold/50 transition duration-300 group">
+                    <div class="text-brand-gold text-2xl font-light mb-4">03</div>
+                    <div class="absolute top-8 right-8 px-2.5 py-1 bg-brand-gold/10 text-brand-gold text-[10px] uppercase tracking-wider">Trọn gói</div>
+                    <h3 class="text-xl font-medium mb-3 group-hover:text-brand-gold transition">Thi công & Hoàn thiện</h3>
+                    <p class="text-brand-gray text-sm leading-relaxed font-light">Trực tiếp sản xuất và thi công từ xưởng đến công trình. Kiểm soát nghiêm ngặt tiến độ, chất lượng và độ hoàn mỹ sắc nét.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-28 bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+                <div>
+                    <span class="text-brand-gold text-xs uppercase tracking-[0.2em] block mb-2">Thực tế dự án</span>
+                    <h2 class="text-3xl md:text-4xl font-light">Dự án tiêu biểu</h2>
+                </div>
+                <p class="text-brand-gray text-sm max-w-sm mt-4 md:mt-0 font-light">Mỗi công trình là một câu chuyện riêng biệt được cá nhân hóa hoàn toàn theo lối sống của gia chủ.</p>
+            </div>
+            <!-- Grid Portfolio -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Project 1 -->
+                <div class="group relative overflow-hidden bg-brand-charcoal aspect-[16/10]">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10"></div>
+                    <div class="absolute inset-0 flex items-center justify-center bg-brand-charcoal text-brand-gray text-sm font-light tracking-widest">
+                        [ KHÔNG GIAN PHỐI CẢNH 3D ]
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-8 z-20">
+                        <span class="text-brand-gold text-xs tracking-wider uppercase block mb-1">Căn hộ Penthouse • Hà Nội</span>
+                        <h3 class="text-2xl font-normal">Minimalist Warmth Residence</h3>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="group relative overflow-hidden bg-brand-charcoal aspect-[16/10]">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10"></div>
+                    <div class="absolute inset-0 flex items-center justify-center bg-brand-charcoal text-brand-gray text-sm font-light tracking-widest">
+                        [ KHÔNG GIAN PHỐI CẢNH 3D ]
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-8 z-20">
+                        <span class="text-brand-gold text-xs tracking-wider uppercase block mb-1">Biệt thự phố • Xa La</span>
+                        <h3 class="text-2xl font-normal">Modern Neoclassical Villa</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-28 bg-[#0D0D0D] border-t border-white/5">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-brand-gold text-xs uppercase tracking-[0.2em] block mb-2">Kết nối</span>
+                <h2 class="text-3xl md:text-4xl font-light mb-4">Bắt đầu không gian của bạn</h2>
+                <p class="text-brand-gray text-sm font-light">Hãy chia sẻ ý tưởng sơ phác hoặc yêu cầu của bạn, chúng tôi sẽ liên hệ tư vấn chuyên sâu.</p>
+            </div>
+            <form class="space-y-6" onsubmit="event.preventDefault(); alert('Cảm ơn bạn! Thông tin đã được ghi nhận.');">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-brand-gray mb-2">Họ và tên</label>
+                        <input type="text" required class="w-full bg-brand-charcoal border border-white/10 px-4 py-3.5 text-white focus:outline-none focus:border-brand-gold transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-brand-gray mb-2">Số điện thoại</label>
+                        <input type="tel" required class="w-full bg-brand-charcoal border border-white/10 px-4 py-3.5 text-white focus:outline-none focus:border-brand-gold transition">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-wider text-brand-gray mb-2">Yêu cầu / Hạng mục đầu tư</label>
+                    <textarea rows="4" required class="w-full bg-brand-charcoal border border-white/10 px-4 py-3.5 text-white focus:outline-none focus:border-brand-gold transition"></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="px-10 py-4 bg-brand-gold text-black font-semibold hover:bg-white transition duration-300 text-sm tracking-widest uppercase">Gửi yêu cầu tư vấn</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-black border-t border-white/10 text-center text-brand-gray text-xs tracking-wider">
+        <p>&copy; 2026 Phú Trần Studio. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

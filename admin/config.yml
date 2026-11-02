@@ -1,1 +1,21 @@
+backend:
+  name: github
+  repo: pspacearchitecture-max/P-Space
+  branch: test-cms
+  base_url: https://decap-cms-oauth.vercel.app
 
+media_folder: "images/projects"
+public_folder: "/images/projects"
+
+collections:
+  - name: "projects"
+    label: "Dự án Công trình"
+    folder: "content/projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Tên công trình", name: "title", widget: "string" }
+      - { label: "Địa điểm", name: "location", widget: "string" }
+      - { label: "Phong cách thiết kế", name: "style", widget: "string" }
+      - { label: "Ảnh đại diện", name: "thumbnail", widget: "image" }
+      - { label: "Mô tả ngắn", name: "description", widget: "text" }

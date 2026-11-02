@@ -9,7 +9,7 @@
 <meta property="og:title" content="P-Space Vision | Kiến trúc & Thiết kế Nội thất Cao cấp">
 <meta property="og:description" content="Thiết kế và thi công trọn gói biệt thự, căn hộ cao cấp, không gian thương mại.">
 <meta property="og:image" content="https://github.com/pspacearchitecture-max.png">
-<link rel="icon" href="https://github.com/pspacearchitecture-max.png">
+<link rel="icon" type="image/png" href="/favicon.png?v=3">
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script>
@@ -145,9 +145,6 @@ section[id]{scroll-margin-top:5rem}
       <p class="text-brand-gray text-sm max-w-sm font-light">Mỗi không gian được cá nhân hóa theo phong cách sống và gu thẩm mỹ riêng của gia chủ.</p>
     </div>
     <div class="grid md:grid-cols-2 gap-8">
-      <!-- ẢNH DỰ ÁN: thay khối gradient bên dưới bằng
-           <img src="images/penthouse-tay-ho.jpg" alt="Penthouse Tây Hồ" class="absolute inset-0 w-full h-full object-cover">
-           (tạo thư mục images/ trong repo, tải ảnh lên rồi đổi tên file cho khớp) -->
       <article class="group relative overflow-hidden aspect-[16/10] bg-gradient-to-br from-[#2a2118] via-brand-surface to-brand-charcoal border border-white/5">
         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent"></div>
         <div class="absolute bottom-0 left-0 p-8">
@@ -246,7 +243,6 @@ mb.onclick=()=>{const o=mm.classList.toggle('hidden');mb.setAttribute('aria-expa
 mm.querySelectorAll('a').forEach(a=>a.onclick=()=>{mm.classList.add('hidden');mb.setAttribute('aria-expanded','false')});
 
 // Form liên hệ
-// Cách nhận yêu cầu thật: tạo form miễn phí tại formspree.io, dán link dạng https://formspree.io/f/xxxx vào dòng dưới.
 const FORM_ENDPOINT='';
 const FB='https://www.facebook.com/phutran.pspace.vision';
 const f=document.getElementById('f'),st=document.getElementById('st');
@@ -261,7 +257,6 @@ f.addEventListener('submit',async e=>{
     }catch{st.textContent='Chưa gửi được yêu cầu. Vui lòng gọi 0976 105 478.'}
     return;
   }
-  // Chưa cấu hình: sao chép nội dung và mở Facebook để người dùng nhắn trực tiếp
   window.open(FB,'_blank','noopener');
   const t=`Họ tên: ${d.get('name')}\nSĐT: ${d.get('phone')}\nYêu cầu: ${d.get('note')}`;
   try{await navigator.clipboard.writeText(t)}catch{}

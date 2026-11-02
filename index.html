@@ -237,6 +237,9 @@ section[id]{scroll-margin-top:5rem}
 </a>
 
 <script>
+// Dọn tham số fbclid do Facebook tự gắn vào link (chỉ đổi cách hiển thị thanh địa chỉ)
+if(location.search.includes('fbclid')){history.replaceState(null,'',location.pathname+location.hash)}
+
 // Menu điện thoại
 const mb=document.getElementById('mb'),mm=document.getElementById('mm');
 mb.onclick=()=>{const o=mm.classList.toggle('hidden');mb.setAttribute('aria-expanded',!o)};

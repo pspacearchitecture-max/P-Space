@@ -1,214 +1,269 @@
 <!DOCTYPE html>
 <html lang="vi" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>P-Space Vision | Kiến trúc & Thiết kế Nội thất Cao cấp</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            dark: '#0A0A0A',
-                            gold: '#C5A880',
-                            charcoal: '#141414',
-                            surface: '#1E1E1E',
-                            gray: '#999999',
-                            light: '#F4F4F4'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P-Space Vision | Kiến trúc & Thiết kế Nội thất Cao cấp</title>
+<meta name="description" content="P-Space Vision thiết kế và thi công trọn gói biệt thự, căn hộ cao cấp và không gian thương mại tại Hà Nội. Liên hệ 0976 105 478.">
+<meta name="theme-color" content="#0A0A0A">
+<meta property="og:title" content="P-Space Vision | Kiến trúc & Thiết kế Nội thất Cao cấp">
+<meta property="og:description" content="Thiết kế và thi công trọn gói biệt thự, căn hộ cao cấp, không gian thương mại.">
+<meta property="og:image" content="https://github.com/pspacearchitecture-max.png">
+<link rel="icon" href="https://github.com/pspacearchitecture-max.png">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script>
+tailwind.config={theme:{extend:{colors:{brand:{dark:'#0A0A0A',gold:'#C5A880',charcoal:'#141414',surface:'#1E1E1E',gray:'#A3A3A3',light:'#F4F4F4'}},fontFamily:{sans:['"Plus Jakarta Sans"','sans-serif'],serif:['"Cormorant Garamond"','serif']}}}}
+</script>
+<style>
+.d{stroke-dasharray:1;stroke-dashoffset:1;animation:d 1.8s ease forwards;animation-delay:calc(var(--i)*.18s)}
+@keyframes d{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.d{animation:none;stroke-dashoffset:0}html{scroll-behavior:auto}}
+:focus-visible{outline:2px solid #C5A880;outline-offset:3px}
+section[id]{scroll-margin-top:5rem}
+</style>
 </head>
 <body class="bg-brand-dark text-white font-sans antialiased selection:bg-brand-gold selection:text-black">
 
-    <!-- Header / Navigation -->
-    <header class="fixed top-0 left-0 w-full z-50 bg-brand-dark/90 backdrop-blur-md border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <!-- Logo with GitHub Avatar -->
-            <a href="#" class="flex items-center gap-3 group">
-                <img src="https://github.com/pspacearchitecture-max.png" alt="P-Space Vision Logo" class="w-10 h-10 rounded-full object-cover border border-brand-gold/50 group-hover:border-brand-gold transition">
-                <span class="text-xl font-bold tracking-[0.2em] uppercase text-white">
-                    P-Space <span class="text-brand-gold font-light">Vision</span>
-                </span>
-            </a>
-            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wider">
-                <a href="#about" class="text-brand-gray hover:text-white transition">Năng lực</a>
-                <a href="#services" class="text-brand-gray hover:text-white transition">Chuyên môn</a>
-                <a href="#portfolio" class="text-brand-gray hover:text-white transition">Dự án</a>
-                <a href="#tools" class="text-brand-gold hover:text-white transition flex items-center gap-1.5">⚡ Tiện ích KTS</a>
-                <a href="#contact" class="px-5 py-2.5 border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-black transition duration-300">Liên hệ tư vấn</a>
-            </nav>
+<!-- Header -->
+<header class="fixed top-0 left-0 w-full z-50 bg-brand-dark/90 backdrop-blur-md border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-3 group">
+      <img src="https://github.com/pspacearchitecture-max.png" alt="Logo P-Space Vision" class="w-10 h-10 rounded-full object-cover border border-brand-gold/50 group-hover:border-brand-gold transition">
+      <span class="text-lg font-semibold tracking-[0.15em] uppercase">P-Space <span class="text-brand-gold font-light">Vision</span></span>
+    </a>
+    <nav class="hidden lg:flex items-center gap-7 text-sm text-brand-gray">
+      <a href="#about" class="hover:text-white transition">Năng lực</a>
+      <a href="#services" class="hover:text-white transition">Chuyên môn</a>
+      <a href="#process" class="hover:text-white transition">Quy trình</a>
+      <a href="#portfolio" class="hover:text-white transition">Dự án</a>
+      <a href="#tools" class="hover:text-white transition">Sổ tay thiết kế</a>
+      <a href="tel:0976105478" class="px-5 py-2.5 bg-brand-gold text-black font-semibold hover:bg-white transition">Gọi 0976 105 478</a>
+    </nav>
+    <button id="mb" class="lg:hidden p-2 -mr-2" aria-label="Mở menu" aria-expanded="false" aria-controls="mm">
+      <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h20M3 13h20M3 18h20"/></svg>
+    </button>
+  </div>
+  <nav id="mm" class="hidden lg:hidden border-t border-white/10 bg-brand-dark px-6 py-4 flex flex-col text-base">
+    <a href="#about" class="py-3 border-b border-white/5">Năng lực</a>
+    <a href="#services" class="py-3 border-b border-white/5">Chuyên môn</a>
+    <a href="#process" class="py-3 border-b border-white/5">Quy trình</a>
+    <a href="#portfolio" class="py-3 border-b border-white/5">Dự án</a>
+    <a href="#tools" class="py-3 border-b border-white/5">Sổ tay thiết kế</a>
+    <a href="#contact" class="py-3 text-brand-gold">Liên hệ tư vấn</a>
+  </nav>
+</header>
+
+<main>
+<!-- Hero -->
+<section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+  <div class="absolute inset-0 opacity-[0.12] bg-[linear-gradient(#C5A880_1px,transparent_1px),linear-gradient(90deg,#C5A880_1px,transparent_1px)] [background-size:56px_56px]"></div>
+  <div class="relative max-w-7xl mx-auto px-6 py-16 grid lg:grid-cols-2 gap-12 items-center">
+    <div>
+      <p class="text-brand-gold text-sm mb-5">Kiến trúc & Thiết kế Nội thất · Hà Nội</p>
+      <h1 class="font-serif font-semibold text-5xl md:text-7xl leading-[1.05] tracking-tight mb-6">Kiến tạo không gian, định hình chuẩn mực sống.</h1>
+      <p class="text-brand-gray max-w-xl text-base md:text-lg font-light leading-relaxed mb-10">Chuyên thiết kế và thi công trọn gói biệt thự, căn hộ cao cấp và không gian thương mại với tư duy tối giản, tinh tế từng chi tiết vật liệu.</p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="tel:0976105478" class="px-8 py-4 bg-brand-gold text-black font-semibold hover:bg-white transition text-center">Gọi tư vấn: 0976 105 478</a>
+        <a href="#portfolio" class="px-8 py-4 border border-white/25 hover:border-brand-gold hover:text-brand-gold transition text-center">Xem công trình</a>
+      </div>
+    </div>
+    <!-- Mặt bằng vẽ tay bằng nét mảnh -->
+    <svg viewBox="0 0 400 360" class="w-full max-w-md mx-auto text-brand-gold" fill="none" stroke="currentColor" stroke-width="1.6" role="img" aria-label="Bản vẽ mặt bằng căn hộ">
+      <rect class="d" style="--i:0" pathLength="1" x="40" y="40" width="320" height="260" stroke-width="3"/>
+      <path class="d" style="--i:1" pathLength="1" d="M200 40V150M200 210V300" stroke-width="3"/>
+      <path class="d" style="--i:2" pathLength="1" d="M200 150H260M260 150A60 60 0 0 1 200 210"/>
+      <rect class="d" style="--i:3" pathLength="1" x="60" y="232" width="110" height="50" rx="6"/>
+      <circle class="d" style="--i:4" pathLength="1" cx="115" cy="150" r="26"/>
+      <rect class="d" style="--i:5" pathLength="1" x="250" y="60" width="90" height="80"/>
+      <rect class="d" style="--i:6" pathLength="1" x="250" y="262" width="100" height="28"/>
+      <path class="d" style="--i:7" pathLength="1" d="M40 328H360M40 320V336M360 320V336"/>
+      <text x="200" y="352" fill="currentColor" stroke="none" font-size="12" text-anchor="middle" font-family="Plus Jakarta Sans">6400</text>
+    </svg>
+  </div>
+</section>
+
+<!-- Năng lực -->
+<section id="about" class="py-24 bg-brand-charcoal border-t border-white/5">
+  <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-14">
+    <div>
+      <h2 class="font-serif font-semibold text-4xl md:text-5xl leading-tight mb-6">Từ bản vẽ đến công trình, một đầu mối chịu trách nhiệm.</h2>
+      <p class="text-brand-gray font-light leading-relaxed max-w-lg mb-4">P-Space Vision quản lý xuyên suốt từ thiết kế, sản xuất tại xưởng đến thi công hoàn thiện. Chi tiết trên bản vẽ được giữ nguyên khi ra công trình, tiến độ và chất lượng có người theo sát từng hạng mục.</p>
+      <p class="text-brand-gray font-light leading-relaxed max-w-lg">Phong cách ưu tiên: Tân cổ điển và Tối giản, thể hiện qua vật liệu và đường nét thay vì trang trí.</p>
+    </div>
+    <div>
+      <h3 class="text-brand-gold text-sm mb-4">Vật liệu cao cấp chúng tôi xử lý</h3>
+      <ul class="divide-y divide-white/10 border-y border-white/10">
+        <li class="py-4 flex justify-between"><span>Đá nung kết</span><span class="text-brand-gray text-sm">Mặt bếp, ốp tường, sàn</span></li>
+        <li class="py-4 flex justify-between"><span>Gỗ óc chó</span><span class="text-brand-gray text-sm">Tủ, vách, đồ rời</span></li>
+        <li class="py-4 flex justify-between"><span>PVD brass</span><span class="text-brand-gray text-sm">Chi tiết điểm nhấn</span></li>
+        <li class="py-4 flex justify-between"><span>Inox xi mạ</span><span class="text-brand-gray text-sm">Phụ kiện, khung, nẹp</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Chuyên môn -->
+<section id="services" class="py-24 bg-brand-dark border-t border-white/5">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="font-serif font-semibold text-4xl md:text-5xl mb-14">Giải pháp thiết kế toàn diện</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <article class="border-l-2 border-brand-gold pl-6">
+        <h3 class="text-xl font-semibold mb-3">Thiết kế Kiến trúc</h3>
+        <p class="text-brand-gray text-sm leading-relaxed font-light">Giải pháp hình khối không gian tối ưu công năng, đón sáng tự nhiên, kết nối hài hòa với cảnh quan và phong thủy.</p>
+      </article>
+      <article class="border-l-2 border-brand-gold pl-6">
+        <h3 class="text-xl font-semibold mb-3">Thiết kế Nội thất</h3>
+        <p class="text-brand-gray text-sm leading-relaxed font-light">Phong cách Tân cổ điển & Tối giản. Xử lý sắc nét vật liệu cao cấp: đá nung kết, gỗ óc chó, PVD brass và inox xi mạ.</p>
+      </article>
+      <article class="border-l-2 border-brand-gold pl-6">
+        <h3 class="text-xl font-semibold mb-3">Thi công & Hoàn thiện <span class="ml-2 align-middle px-2 py-0.5 bg-brand-gold/15 text-brand-gold text-xs font-medium">Trọn gói</span></h3>
+        <p class="text-brand-gray text-sm leading-relaxed font-light">Sản xuất trực tiếp tại xưởng, kiểm soát nghiêm ngặt tiến độ và độ hoàn mỹ sắc sảo từ bản vẽ đến thực tế công trình.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Quy trình (đây là chuỗi bước thật nên có đánh số) -->
+<section id="process" class="py-24 bg-brand-charcoal border-t border-white/5">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="font-serif font-semibold text-4xl md:text-5xl mb-14">Quy trình làm việc</h2>
+    <ol class="grid md:grid-cols-4 gap-0 border border-white/10">
+      <li class="p-8 border-b md:border-b-0 md:border-r border-white/10"><span class="font-serif text-4xl text-brand-gold">1</span><h3 class="font-semibold mt-4 mb-2">Tiếp nhận & khảo sát</h3><p class="text-brand-gray text-sm font-light leading-relaxed">Trao đổi nhu cầu, ngân sách, khảo sát hiện trạng công trình.</p></li>
+      <li class="p-8 border-b md:border-b-0 md:border-r border-white/10"><span class="font-serif text-4xl text-brand-gold">2</span><h3 class="font-semibold mt-4 mb-2">Thiết kế & hợp đồng</h3><p class="text-brand-gray text-sm font-light leading-relaxed">Concept, bản vẽ kỹ thuật, dự toán và chốt hợp đồng.</p></li>
+      <li class="p-8 border-b md:border-b-0 md:border-r border-white/10"><span class="font-serif text-4xl text-brand-gold">3</span><h3 class="font-semibold mt-4 mb-2">Sản xuất & thi công</h3><p class="text-brand-gray text-sm font-light leading-relaxed">Gia công nội thất tại xưởng, lắp đặt và theo dõi tiến độ.</p></li>
+      <li class="p-8"><span class="font-serif text-4xl text-brand-gold">4</span><h3 class="font-semibold mt-4 mb-2">Nghiệm thu & bàn giao</h3><p class="text-brand-gray text-sm font-light leading-relaxed">Kiểm tra hoàn thiện, bàn giao và hỗ trợ sau thi công.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- Công trình -->
+<section id="portfolio" class="py-24 bg-brand-dark border-t border-white/5">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-14">
+      <h2 class="font-serif font-semibold text-4xl md:text-5xl">Công trình tiêu biểu</h2>
+      <p class="text-brand-gray text-sm max-w-sm font-light">Mỗi không gian được cá nhân hóa theo phong cách sống và gu thẩm mỹ riêng của gia chủ.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- ẢNH DỰ ÁN: thay khối gradient bên dưới bằng
+           <img src="images/penthouse-tay-ho.jpg" alt="Penthouse Tây Hồ" class="absolute inset-0 w-full h-full object-cover">
+           (tạo thư mục images/ trong repo, tải ảnh lên rồi đổi tên file cho khớp) -->
+      <article class="group relative overflow-hidden aspect-[16/10] bg-gradient-to-br from-[#2a2118] via-brand-surface to-brand-charcoal border border-white/5">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 p-8">
+          <p class="text-brand-gold text-sm mb-1">Penthouse · Tây Hồ, Hà Nội</p>
+          <h3 class="font-serif font-semibold text-3xl">Minimalist Warmth Residence</h3>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center bg-brand-dark overflow-hidden pt-20">
-        <div class="absolute inset-0 z-0 opacity-20 bg-[radial-gradient(#C5A880_1px,transparent_1px)] [background-size:32px_32px]"></div>
-        <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
-            <span class="text-brand-gold text-xs uppercase tracking-[0.4em] font-medium block mb-4">Architecture & Interior Design</span>
-            <h1 class="text-4xl md:text-6xl font-light tracking-tight leading-[1.2] mb-6">
-                Kiến tạo không gian, <br><span class="font-normal text-white">Định hình chuẩn mực sống.</span>
-            </h1>
-            <p class="text-brand-gray max-w-2xl mx-auto text-base md:text-lg font-light mb-10 leading-relaxed">
-                Chuyên thiết kế và thi công trọn gói biệt thự, căn hộ cao cấp và không gian thương mại với tư duy tối giản, tinh tế từng chi tiết vật liệu.
-            </p>
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="#portfolio" class="w-full sm:w-auto px-8 py-4 bg-brand-gold text-black font-semibold hover:bg-white transition duration-300 text-xs tracking-[0.2em] uppercase">Khám phá dự án</a>
-                <a href="#tools" class="w-full sm:w-auto px-8 py-4 border border-white/20 text-white font-medium hover:border-brand-gold hover:text-brand-gold transition duration-300 text-xs tracking-[0.2em] uppercase">Tra cứu tiêu chuẩn</a>
-            </div>
+      </article>
+      <article class="group relative overflow-hidden aspect-[16/10] bg-gradient-to-br from-[#1b2024] via-brand-surface to-brand-charcoal border border-white/5">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 p-8">
+          <p class="text-brand-gold text-sm mb-1">Biệt thự phố · Xa La, Hà Nội</p>
+          <h3 class="font-serif font-semibold text-3xl">Modern Neoclassical Villa</h3>
         </div>
-    </section>
+      </article>
+    </div>
+  </div>
+</section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-28 bg-brand-charcoal border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="mb-16">
-                <span class="text-brand-gold text-xs uppercase tracking-[0.3em] block mb-2">Lĩnh vực hoạt động</span>
-                <h2 class="text-3xl md:text-4xl font-light">Giải pháp thiết kế toàn diện</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div class="p-8 bg-brand-surface border border-white/5 hover:border-brand-gold/50 transition duration-300 group">
-                    <div class="text-brand-gold text-xl font-light mb-4 font-mono">01 / ARCHITECTURE</div>
-                    <h3 class="text-xl font-medium mb-3 group-hover:text-brand-gold transition">Thiết kế Kiến trúc</h3>
-                    <p class="text-brand-gray text-sm leading-relaxed font-light">Giải pháp hình khối không gian tối ưu công năng, đón sáng tự nhiên, kết nối hài hòa với cảnh quan và phong thủy.</p>
-                </div>
-                <!-- Service 2 -->
-                <div class="p-8 bg-brand-surface border border-white/5 hover:border-brand-gold/50 transition duration-300 group">
-                    <div class="text-brand-gold text-xl font-light mb-4 font-mono">02 / INTERIOR</div>
-                    <h3 class="text-xl font-medium mb-3 group-hover:text-brand-gold transition">Thiết kế Nội thất</h3>
-                    <p class="text-brand-gray text-sm leading-relaxed font-light">Phong cách Tân cổ điển & Tối giản. Xử lý sắc nét vật liệu cao cấp: đá nung kết, gỗ óc chó, PVD brass và inox xi mạ.</p>
-                </div>
-                <!-- Service 3 -->
-                <div class="p-8 bg-brand-surface border border-white/5 hover:border-brand-gold/50 transition duration-300 group relative">
-                    <div class="absolute top-8 right-8 px-2.5 py-1 bg-brand-gold/10 text-brand-gold text-[10px] uppercase tracking-wider">Trọn gói</div>
-                    <div class="text-brand-gold text-xl font-light mb-4 font-mono">03 / EXECUTION</div>
-                    <h3 class="text-xl font-medium mb-3 group-hover:text-brand-gold transition">Thi công & Hoàn thiện</h3>
-                    <p class="text-brand-gray text-sm leading-relaxed font-light">Sản xuất trực tiếp tại xưởng, kiểm soát nghiêm ngặt tiến độ và độ hoàn mỹ sắc sảo từ bản vẽ đến thực tế công trình.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Sổ tay -->
+<section id="tools" class="py-24 bg-brand-charcoal border-t border-white/5">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="mb-12">
+      <h2 class="font-serif font-semibold text-4xl md:text-5xl mb-3">Sổ tay thông số thiết kế nhanh</h2>
+      <p class="text-brand-gray text-sm font-light max-w-xl">Các thông số thường dùng khi lên phương án nội thất. Con số mang tính tham khảo, cần đối chiếu với điều kiện và tiêu chuẩn của từng dự án.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="p-8 bg-brand-dark border border-white/10">
+        <h3 class="text-lg font-semibold mb-5 text-brand-gold">Tiêu chuẩn chiếu sáng</h3>
+        <ul class="space-y-3 text-sm text-brand-gray font-light">
+          <li class="flex justify-between gap-4 border-b border-white/5 pb-2"><span>Nhiệt độ màu phòng khách, phòng ngủ</span><strong class="text-white whitespace-nowrap">2700K – 3000K</strong></li>
+          <li class="flex justify-between gap-4 border-b border-white/5 pb-2"><span>Độ rọi khu vực làm việc</span><strong class="text-white whitespace-nowrap">500 – 750 Lux</strong></li>
+          <li class="flex justify-between gap-4"><span>Khoảng cách đèn rọi tranh tường</span><strong class="text-white whitespace-nowrap">600 – 800mm</strong></li>
+        </ul>
+      </div>
+      <div class="p-8 bg-brand-dark border border-white/10">
+        <h3 class="text-lg font-semibold mb-5 text-brand-gold">Kích thước nhân trắc học cơ bản</h3>
+        <ul class="space-y-3 text-sm text-brand-gray font-light">
+          <li class="flex justify-between gap-4 border-b border-white/5 pb-2"><span>Chiều cao mặt bàn bếp thông dụng</span><strong class="text-white whitespace-nowrap">810 – 860mm</strong></li>
+          <li class="flex justify-between gap-4 border-b border-white/5 pb-2"><span>Lối đi chính tối thiểu trong nhà</span><strong class="text-white whitespace-nowrap">≥ 900mm</strong></li>
+          <li class="flex justify-between gap-4 border-b border-white/5 pb-2"><span>Chiều sâu tủ quần áo tiêu chuẩn</span><strong class="text-white whitespace-nowrap">600mm</strong></li>
+          <li class="flex justify-between gap-4 border-b border-white/5 pb-2"><span>Chiều cao mặt bàn ăn</span><strong class="text-white whitespace-nowrap">730 – 750mm</strong></li>
+          <li class="flex justify-between gap-4"><span>Chiều cao mặt ghế ngồi</span><strong class="text-white whitespace-nowrap">420 – 450mm</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Interactive Tools / Quick Reference Section -->
-    <section id="tools" class="py-28 bg-brand-dark border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="mb-16 text-center">
-                <span class="text-brand-gold text-xs uppercase tracking-[0.3em] block mb-2">Tiện ích chuyên ngành</span>
-                <h2 class="text-3xl md:text-4xl font-light mb-4">Sổ tay thông số thiết kế nhanh</h2>
-                <p class="text-brand-gray text-sm font-light max-w-xl mx-auto">Tra cứu nhanh các thông số kỹ thuật, kích thước chuẩn và tiêu chuẩn chiếu sáng nội thất.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <!-- Tool Box 1 -->
-                <div class="p-8 bg-brand-charcoal border border-white/10 rounded-lg">
-                    <h3 class="text-lg font-medium mb-4 text-brand-gold flex items-center gap-2">
-                        <span>💡</span> Tiêu chuẩn Chiếu sáng (Spotlight)
-                    </h3>
-                    <ul class="space-y-3 text-sm text-brand-gray font-light">
-                        <li class="flex justify-between border-b border-white/5 pb-2"><span>Nhiệt độ màu phòng khách/phòng ngủ:</span> <strong class="text-white">2700K – 3000K</strong></li>
-                        <li class="flex justify-between border-b border-white/5 pb-2"><span>Độ rọi (Lux) khu vực làm việc:</span> <strong class="text-white">500 - 750 Lux</strong></li>
-                        <li class="flex justify-between pb-2"><span>Khoảng cách đèn rọi tranh tường:</span> <strong class="text-white">600 - 800mm</strong></li>
-                    </ul>
-                </div>
+<!-- Liên hệ -->
+<section id="contact" class="py-24 bg-brand-dark border-t border-white/5">
+  <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-5 gap-14">
+    <div class="lg:col-span-2">
+      <h2 class="font-serif font-semibold text-4xl md:text-5xl leading-tight mb-5">Bắt đầu hiện thực hóa không gian</h2>
+      <p class="text-brand-gray text-sm font-light leading-relaxed mb-8">Chia sẻ yêu cầu hoặc ý tưởng của bạn, P-Space Vision sẽ liên hệ tư vấn chuyên sâu.</p>
+      <ul class="space-y-5">
+        <li><span class="block text-brand-gray text-sm mb-1">Điện thoại</span><a href="tel:0976105478" class="text-2xl font-semibold hover:text-brand-gold transition">0976 105 478</a></li>
+        <li><span class="block text-brand-gray text-sm mb-1">Facebook</span><a href="https://www.facebook.com/phutran.pspace.vision" target="_blank" rel="noopener" class="text-lg hover:text-brand-gold transition underline underline-offset-4 decoration-white/30">facebook.com/phutran.pspace.vision</a></li>
+      </ul>
+    </div>
+    <form id="f" class="lg:col-span-3 space-y-6">
+      <div class="grid md:grid-cols-2 gap-6">
+        <div><label for="n" class="block text-sm text-brand-gray mb-2">Họ và tên gia chủ</label>
+          <input id="n" name="name" type="text" required autocomplete="name" class="w-full bg-brand-charcoal border border-white/10 px-4 py-3.5 focus:outline-none focus:border-brand-gold transition text-sm"></div>
+        <div><label for="p" class="block text-sm text-brand-gray mb-2">Số điện thoại liên hệ</label>
+          <input id="p" name="phone" type="tel" required autocomplete="tel" class="w-full bg-brand-charcoal border border-white/10 px-4 py-3.5 focus:outline-none focus:border-brand-gold transition text-sm"></div>
+      </div>
+      <div><label for="m" class="block text-sm text-brand-gray mb-2">Quy mô & hạng mục đầu tư (diện tích, phong cách...)</label>
+        <textarea id="m" name="note" rows="5" required class="w-full bg-brand-charcoal border border-white/10 px-4 py-3.5 focus:outline-none focus:border-brand-gold transition text-sm"></textarea></div>
+      <button type="submit" class="px-10 py-4 bg-brand-gold text-black font-semibold hover:bg-white transition">Gửi yêu cầu thiết kế</button>
+      <p id="st" role="status" class="text-sm text-brand-gold"></p>
+    </form>
+  </div>
+</section>
+</main>
 
-                <!-- Tool Box 2 -->
-                <div class="p-8 bg-brand-charcoal border border-white/10 rounded-lg">
-                    <h3 class="text-lg font-medium mb-4 text-brand-gold flex items-center gap-2">
-                        <span>📐</span> Kích thước Nhân trắc học cơ bản
-                    </h3>
-                    <ul class="space-y-3 text-sm text-brand-gray font-light">
-                        <li class="flex justify-between border-b border-white/5 pb-2"><span>Chiều cao mặt bàn bếp thông dụng:</span> <strong class="text-white">810 - 860mm</strong></li>
-                        <li class="flex justify-between border-b border-white/5 pb-2"><span>Lối đi chính tối thiểu trong nhà:</span> <strong class="text-white">>= 900mm</strong></li>
-                        <li class="flex justify-between pb-2"><span>Chiều sâu tủ quần áo tiêu chuẩn:</span> <strong class="text-white">600mm</strong></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Footer -->
+<footer class="py-10 bg-black border-t border-white/10">
+  <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-brand-gray text-sm">
+    <p>&copy; 2026 P-Space Vision. Kiến trúc & Thiết kế Nội thất.</p>
+    <p class="flex gap-6"><a href="tel:0976105478" class="hover:text-white transition">0976 105 478</a><a href="https://www.facebook.com/phutran.pspace.vision" target="_blank" rel="noopener" class="hover:text-white transition">Facebook</a></p>
+  </div>
+</footer>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="py-28 bg-brand-charcoal border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
-                <div>
-                    <span class="text-brand-gold text-xs uppercase tracking-[0.3em] block mb-2">Thực tế dự án</span>
-                    <h2 class="text-3xl md:text-4xl font-light">Công trình tiêu biểu</h2>
-                </div>
-                <p class="text-brand-gray text-sm max-w-sm mt-4 md:mt-0 font-light">Mỗi không gian được cá nhân hóa hoàn toàn theo phong cách sống và gu thẩm mỹ riêng biệt của gia chủ.</p>
-            </div>
-            <!-- Grid Portfolio -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Project 1 -->
-                <div class="group relative overflow-hidden bg-brand-surface aspect-[16/10] border border-white/5">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10"></div>
-                    <div class="absolute inset-0 flex items-center justify-center text-brand-gray/40 text-xs tracking-[0.3em] uppercase">
-                        [ P-SPACE VISION VISUALIZATION ]
-                    </div>
-                    <div class="absolute bottom-0 left-0 p-8 z-20">
-                        <span class="text-brand-gold text-xs tracking-widest uppercase block mb-2">Penthouse • Tây Hồ, Hà Nội</span>
-                        <h3 class="text-2xl font-light">Minimalist Warmth Residence</h3>
-                    </div>
-                </div>
-                <!-- Project 2 -->
-                <div class="group relative overflow-hidden bg-brand-surface aspect-[16/10] border border-white/5">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10"></div>
-                    <div class="absolute inset-0 flex items-center justify-center text-brand-gray/40 text-xs tracking-[0.3em] uppercase">
-                        [ P-SPACE VISION VISUALIZATION ]
-                    </div>
-                    <div class="absolute bottom-0 left-0 p-8 z-20">
-                        <span class="text-brand-gold text-xs tracking-widest uppercase block mb-2">Biệt thự phố • Xa La, Hà Nội</span>
-                        <h3 class="text-2xl font-light">Modern Neoclassical Villa</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Nút gọi nhanh trên điện thoại -->
+<a href="tel:0976105478" aria-label="Gọi 0976 105 478" class="lg:hidden fixed bottom-5 right-5 z-40 w-14 h-14 rounded-full bg-brand-gold text-black grid place-items-center shadow-lg">
+  <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"/></svg>
+</a>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-28 bg-brand-dark border-t border-white/5">
-        <div class="max-w-4xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <span class="text-brand-gold text-xs uppercase tracking-[0.3em] block mb-2">Hợp tác</span>
-                <h2 class="text-3xl md:text-4xl font-light mb-4">Bắt đầu hiện thực hóa không gian</h2>
-                <p class="text-brand-gray text-sm font-light">Chia sẻ yêu cầu hoặc ý tưởng của bạn, P-Space Vision sẽ liên hệ tư vấn chuyên sâu.</p>
-            </div>
-            <form class="space-y-6" onsubmit="event.preventDefault(); alert('Cảm ơn bạn! Yêu cầu tư vấn đã được gửi thành công.');">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-xs uppercase tracking-wider text-brand-gray mb-2">Họ và tên gia chủ</label>
-                        <input type="text" required class="w-full bg-brand-charcoal border border-white/10 px-4 py-3.5 text-white focus:outline-none focus:border-brand-gold transition text-sm">
-                    </div>
-                    <div>
-                        <label class="block text-xs uppercase tracking-wider text-brand-gray mb-2">Số điện thoại liên hệ</label>
-                        <input type="tel" required class="w-full bg-brand-charcoal border border-white/10 px-4 py-3.5 text-white focus:outline-none focus:border-brand-gold transition text-sm">
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-xs uppercase tracking-wider text-brand-gray mb-2">Mô tả quy mô & Hạng mục đầu tư (Diện tích, phong cách...)</label>
-                    <textarea rows="4" required class="w-full bg-brand-charcoal border border-white/10 px-4 py-3.5 text-white focus:outline-none focus:border-brand-gold transition text-sm"></textarea>
-                </div>
-                <div class="text-center pt-4">
-                    <button type="submit" class="px-10 py-4 bg-brand-gold text-black font-semibold hover:bg-white transition duration-300 text-xs tracking-[0.2em] uppercase">Gửi yêu cầu thiết kế</button>
-                </div>
-            </form>
-        </div>
-    </section>
+<script>
+// Menu điện thoại
+const mb=document.getElementById('mb'),mm=document.getElementById('mm');
+mb.onclick=()=>{const o=mm.classList.toggle('hidden');mb.setAttribute('aria-expanded',!o)};
+mm.querySelectorAll('a').forEach(a=>a.onclick=()=>{mm.classList.add('hidden');mb.setAttribute('aria-expanded','false')});
 
-    <!-- Footer -->
-    <footer class="py-12 bg-black border-t border-white/10 text-center text-brand-gray text-xs tracking-widest">
-        <p>&copy; 2026 P-Space Vision. Designed for Architecture & Interior Excellence.</p>
-    </footer>
-
+// Form liên hệ
+// Cách nhận yêu cầu thật: tạo form miễn phí tại formspree.io, dán link dạng https://formspree.io/f/xxxx vào dòng dưới.
+const FORM_ENDPOINT='';
+const FB='https://www.facebook.com/phutran.pspace.vision';
+const f=document.getElementById('f'),st=document.getElementById('st');
+f.addEventListener('submit',async e=>{
+  e.preventDefault();
+  const d=new FormData(f);
+  if(FORM_ENDPOINT){
+    try{
+      const r=await fetch(FORM_ENDPOINT,{method:'POST',body:d,headers:{Accept:'application/json'}});
+      if(!r.ok)throw 0;
+      f.reset();st.textContent='Đã gửi yêu cầu. P-Space Vision sẽ liên hệ lại với bạn sớm.';
+    }catch{st.textContent='Chưa gửi được yêu cầu. Vui lòng gọi 0976 105 478.'}
+    return;
+  }
+  // Chưa cấu hình: sao chép nội dung và mở Facebook để người dùng nhắn trực tiếp
+  window.open(FB,'_blank','noopener');
+  const t=`Họ tên: ${d.get('name')}\nSĐT: ${d.get('phone')}\nYêu cầu: ${d.get('note')}`;
+  try{await navigator.clipboard.writeText(t)}catch{}
+  st.textContent='Nội dung đã được sao chép. Hãy dán vào tin nhắn Facebook vừa mở, hoặc gọi 0976 105 478.';
+});
+</script>
 </body>
 </html>

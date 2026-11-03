@@ -148,7 +148,7 @@ section[id]{scroll-margin-top:5rem}
     <!-- Container chứa danh sách dự án -->
     <div id="projects-container" class="grid md:grid-cols-2 gap-8">
       <!-- Bài viết mẫu 1 -->
-      <article class="group relative overflow-hidden aspect-[16/10] bg-gradient-to-br from-[#2a2118] via-brand-surface to-brand-charcoal border border-white/5">
+      <article class="project-card cursor-pointer group relative overflow-hidden aspect-[16/10] bg-gradient-to-br from-[#2a2118] via-brand-surface to-brand-charcoal border border-white/5" data-img="" data-title="Minimalist Warmth Residence">
         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent"></div>
         <div class="absolute bottom-0 left-0 p-8">
           <p class="text-brand-gold text-sm mb-1">Penthouse · Tây Hồ, Hà Nội</p>
@@ -156,7 +156,7 @@ section[id]{scroll-margin-top:5rem}
         </div>
       </article>
       <!-- Bài viết mẫu 2 -->
-      <article class="group relative overflow-hidden aspect-[16/10] bg-gradient-to-br from-[#1b2024] via-brand-surface to-brand-charcoal border border-white/5">
+      <article class="project-card cursor-pointer group relative overflow-hidden aspect-[16/10] bg-gradient-to-br from-[#1b2024] via-brand-surface to-brand-charcoal border border-white/5" data-img="" data-title="Modern Neoclassical Villa">
         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent"></div>
         <div class="absolute bottom-0 left-0 p-8">
           <p class="text-brand-gold text-sm mb-1">Biệt thự phố · Xa La, Hà Nội</p>
@@ -232,6 +232,15 @@ section[id]{scroll-margin-top:5rem}
   </div>
 </footer>
 
+<!-- Modal phóng to ảnh (Lightbox xem toàn màn hình) -->
+<div id="img-modal" class="fixed inset-0 z-[100] hidden bg-black/95 backdrop-blur-md flex items-center justify-center p-4">
+  <button id="close-modal" aria-label="Đóng" class="absolute top-6 right-6 text-white/70 hover:text-white p-2 text-3xl font-light focus:outline-none">&times;</button>
+  <div class="max-w-5xl max-h-[90vh] flex flex-col items-center">
+    <img id="modal-img" src="" alt="" class="max-w-full max-h-[80vh] object-contain rounded shadow-2xl border border-white/10">
+    <div id="modal-caption" class="mt-4 text-center text-brand-gold font-serif text-xl"></div>
+  </div>
+</div>
+
 <!-- Nút gọi nhanh trên điện thoại -->
 <a href="tel:0976105478" aria-label="Gọi 0976 105 478" class="lg:hidden fixed bottom-5 right-5 z-40 w-14 h-14 rounded-full bg-brand-gold text-black grid place-items-center shadow-lg">
   <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"/></svg>
@@ -267,6 +276,35 @@ f.addEventListener('submit',async e=>{
   st.textContent='Nội dung đã được sao chép. Hãy dán vào tin nhắn Facebook vừa mở, hoặc gọi 0976 105 478.';
 });
 
+// Xử lý đóng/mở phóng to ảnh (Lightbox)
+function initLightbox() {
+  const modal = document.getElementById('img-modal');
+  const modalImg = document.getElementById('modal-img');
+  const modalCaption = document.getElementById('modal-caption');
+  const closeBtn = document.getElementById('close-modal');
+
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const src = card.getAttribute('data-img');
+      const title = card.getAttribute('data-title');
+      if (src) {
+        modalImg.src = src;
+        modalCaption.textContent = title || '';
+        modal.classList.remove('hidden');
+      }
+    });
+  });
+
+  const closeModal = () => modal.classList.add('hidden');
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+}
+
 // TỰ ĐỘNG ĐỌC VÀ HIỂN THỊ DỰ ÁN TỪ CMS
 async function loadCMSProjects() {
   const container = document.getElementById('projects-container');
@@ -274,20 +312,23 @@ async function loadCMSProjects() {
   const branch = 'Test-cms';
   
   try {
-    // 1. Lấy danh sách các tệp trong content/projects
     const res = await fetch(`https://api.github.com/repos/${repo}/contents/content/projects?ref=${branch}`);
-    if (!res.ok) return;
+    if (!res.ok) {
+      initLightbox();
+      return;
+    }
     const files = await res.json();
     
     const mdFiles = files.filter(file => file.name.endsWith('.md'));
-    if (!mdFiles.length) return;
+    if (!mdFiles.length) {
+      initLightbox();
+      return;
+    }
 
-    // 2. Đọc nội dung từng tệp
     const projectCards = await Promise.all(mdFiles.map(async file => {
       const contentRes = await fetch(file.download_url);
       const text = await contentRes.text();
       
-      // Tách phần Frontmatter YAML giữa 2 dấu ---
       const match = text.match(/^---\s*([\s\S]*?)\s*---/);
       if (!match) return null;
       
@@ -298,7 +339,6 @@ async function loadCMSProjects() {
         if (colonIndex !== -1) {
           const key = line.slice(0, colonIndex).trim();
           let val = line.slice(colonIndex + 1).trim();
-          // Loại bỏ dấu ngoặc kép thừa nếu có
           if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
             val = val.slice(1, -1);
           }
@@ -309,9 +349,12 @@ async function loadCMSProjects() {
     }));
 
     const validProjects = projectCards.filter(Boolean);
-    if (!validProjects.length) return;
+    if (!validProjects.length) {
+      initLightbox();
+      return;
+    }
 
-    // 3. Render ra giao diện HTML
+    // Hiển thị danh sách dự án động lấy từ CMS
     container.innerHTML = validProjects.map(p => {
       const location = p.location || 'Hà Nội';
       const style = p.style || 'Kiến trúc & Nội thất';
@@ -319,7 +362,7 @@ async function loadCMSProjects() {
       const thumb = p.thumbnail ? p.thumbnail : '';
       
       return `
-        <article class="group relative overflow-hidden aspect-[16/10] bg-brand-surface border border-white/5">
+        <article class="project-card cursor-pointer group relative overflow-hidden aspect-[16/10] bg-brand-surface border border-white/5" data-img="${thumb}" data-title="${title}">
           ${thumb ? `<img src="${thumb}" alt="${title}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">` : ''}
           <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
           <div class="absolute bottom-0 left-0 p-8">
@@ -330,10 +373,16 @@ async function loadCMSProjects() {
         </article>
       `;
     }).join('');
+
+    // Kích hoạt tính năng phóng to ảnh sau khi render xong
+    initLightbox();
+
   } catch (err) {
     console.warn('Không tải được bài viết CMS, sử dụng dữ liệu mặc định.', err);
+    initLightbox();
   }
 }
+
 loadCMSProjects();
 </script>
 </body>

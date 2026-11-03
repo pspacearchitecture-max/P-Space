@@ -124,7 +124,7 @@ section[id]{scroll-margin-top:5rem}
   </div>
 </section>
 
-<!-- Quy trình (đây là chuỗi bước thật nên có đánh số) -->
+<!-- Quy trình -->
 <section id="process" class="py-24 bg-brand-charcoal border-t border-white/5">
   <div class="max-w-7xl mx-auto px-6">
     <h2 class="font-serif font-semibold text-4xl md:text-5xl mb-14">Quy trình làm việc</h2>
@@ -137,14 +137,17 @@ section[id]{scroll-margin-top:5rem}
   </div>
 </section>
 
-<!-- Công trình -->
+<!-- Công trình (Khu vực nạp động từ CMS) -->
 <section id="portfolio" class="py-24 bg-brand-dark border-t border-white/5">
   <div class="max-w-7xl mx-auto px-6">
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-14">
       <h2 class="font-serif font-semibold text-4xl md:text-5xl">Công trình tiêu biểu</h2>
       <p class="text-brand-gray text-sm max-w-sm font-light">Mỗi không gian được cá nhân hóa theo phong cách sống và gu thẩm mỹ riêng của gia chủ.</p>
     </div>
-    <div class="grid md:grid-cols-2 gap-8">
+    
+    <!-- Container chứa danh sách dự án -->
+    <div id="projects-container" class="grid md:grid-cols-2 gap-8">
+      <!-- Bài viết mẫu 1 -->
       <article class="group relative overflow-hidden aspect-[16/10] bg-gradient-to-br from-[#2a2118] via-brand-surface to-brand-charcoal border border-white/5">
         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent"></div>
         <div class="absolute bottom-0 left-0 p-8">
@@ -152,6 +155,7 @@ section[id]{scroll-margin-top:5rem}
           <h3 class="font-serif font-semibold text-3xl">Minimalist Warmth Residence</h3>
         </div>
       </article>
+      <!-- Bài viết mẫu 2 -->
       <article class="group relative overflow-hidden aspect-[16/10] bg-gradient-to-br from-[#1b2024] via-brand-surface to-brand-charcoal border border-white/5">
         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent"></div>
         <div class="absolute bottom-0 left-0 p-8">
@@ -234,7 +238,7 @@ section[id]{scroll-margin-top:5rem}
 </a>
 
 <script>
-// Dọn tham số fbclid do Facebook tự gắn vào link (chỉ đổi cách hiển thị thanh địa chỉ)
+// Dọn tham số fbclid do Facebook tự gắn vào link
 if(location.search.includes('fbclid')){history.replaceState(null,'',location.pathname+location.hash)}
 
 // Menu điện thoại
@@ -262,6 +266,75 @@ f.addEventListener('submit',async e=>{
   try{await navigator.clipboard.writeText(t)}catch{}
   st.textContent='Nội dung đã được sao chép. Hãy dán vào tin nhắn Facebook vừa mở, hoặc gọi 0976 105 478.';
 });
+
+// TỰ ĐỘNG ĐỌC VÀ HIỂN THỊ DỰ ÁN TỪ CMS
+async function loadCMSProjects() {
+  const container = document.getElementById('projects-container');
+  const repo = 'pspacearchitecture-max/P-Space';
+  const branch = 'Test-cms';
+  
+  try {
+    // 1. Lấy danh sách các tệp trong content/projects
+    const res = await fetch(`https://api.github.com/repos/${repo}/contents/content/projects?ref=${branch}`);
+    if (!res.ok) return;
+    const files = await res.json();
+    
+    const mdFiles = files.filter(file => file.name.endsWith('.md'));
+    if (!mdFiles.length) return;
+
+    // 2. Đọc nội dung từng tệp
+    const projectCards = await Promise.all(mdFiles.map(async file => {
+      const contentRes = await fetch(file.download_url);
+      const text = await contentRes.text();
+      
+      // Tách phần Frontmatter YAML giữa 2 dấu ---
+      const match = text.match(/^---\s*([\s\S]*?)\s*---/);
+      if (!match) return null;
+      
+      const lines = match[1].split('\n');
+      const data = {};
+      lines.forEach(line => {
+        const colonIndex = line.indexOf(':');
+        if (colonIndex !== -1) {
+          const key = line.slice(0, colonIndex).trim();
+          let val = line.slice(colonIndex + 1).trim();
+          // Loại bỏ dấu ngoặc kép thừa nếu có
+          if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+            val = val.slice(1, -1);
+          }
+          data[key] = val;
+        }
+      });
+      return data;
+    }));
+
+    const validProjects = projectCards.filter(Boolean);
+    if (!validProjects.length) return;
+
+    // 3. Render ra giao diện HTML
+    container.innerHTML = validProjects.map(p => {
+      const location = p.location || 'Hà Nội';
+      const style = p.style || 'Kiến trúc & Nội thất';
+      const title = p.title || 'Dự án P-Space';
+      const thumb = p.thumbnail ? p.thumbnail : '';
+      
+      return `
+        <article class="group relative overflow-hidden aspect-[16/10] bg-brand-surface border border-white/5">
+          ${thumb ? `<img src="${thumb}" alt="${title}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">` : ''}
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-8">
+            <p class="text-brand-gold text-sm mb-1">${style} · ${location}</p>
+            <h3 class="font-serif font-semibold text-3xl text-white">${title}</h3>
+            ${p.description ? `<p class="text-brand-gray text-xs mt-2 font-light line-clamp-2 max-w-md">${p.description}</p>` : ''}
+          </div>
+        </article>
+      `;
+    }).join('');
+  } catch (err) {
+    console.warn('Không tải được bài viết CMS, sử dụng dữ liệu mặc định.', err);
+  }
+}
+loadCMSProjects();
 </script>
 </body>
 </html>

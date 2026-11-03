@@ -2,7 +2,6 @@ backend:
   name: github
   repo: pspacearchitecture-max/P-Space
   branch: test-cms
-  base_url: https://sveltia-cms-auth.vercel.app
 
 media_folder: "images/projects"
 public_folder: "/images/projects"

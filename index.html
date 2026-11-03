@@ -141,22 +141,25 @@ section[id]{scroll-margin-top:5rem}
 <section id="portfolio" class="py-24 bg-brand-dark border-t border-white/5">
   <div class="max-w-7xl mx-auto px-6">
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-14">
-      <h2 class="font-serif font-semibold text-4xl md:text-5xl">Công trình tiêu biểu</h2>
+      <div>
+        <h2 class="font-serif font-semibold text-4xl md:text-5xl">Công trình tiêu biểu</h2>
+        <p class="text-brand-gray text-sm mt-2 font-light">Bấm vào bất kỳ dự án nào để xem trọn bộ album ảnh chi tiết.</p>
+      </div>
       <p class="text-brand-gray text-sm max-w-sm font-light">Mỗi không gian được cá nhân hóa theo phong cách sống và gu thẩm mỹ riêng của gia chủ.</p>
     </div>
     
     <!-- Container chứa danh sách dự án -->
     <div id="projects-container" class="grid md:grid-cols-2 gap-8">
-      <!-- Bài viết mẫu 1 -->
-      <article class="project-card cursor-pointer group relative overflow-hidden aspect-[16/10] bg-gradient-to-br from-[#2a2118] via-brand-surface to-brand-charcoal border border-white/5" data-img="" data-title="Minimalist Warmth Residence">
+      <!-- Bài viết mẫu dự phòng 1 -->
+      <article class="project-card cursor-pointer group relative overflow-hidden aspect-[16/10] bg-gradient-to-br from-[#2a2118] via-brand-surface to-brand-charcoal border border-white/5" data-images="[]" data-title="Minimalist Warmth Residence">
         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent"></div>
         <div class="absolute bottom-0 left-0 p-8">
           <p class="text-brand-gold text-sm mb-1">Penthouse · Tây Hồ, Hà Nội</p>
           <h3 class="font-serif font-semibold text-3xl">Minimalist Warmth Residence</h3>
         </div>
       </article>
-      <!-- Bài viết mẫu 2 -->
-      <article class="project-card cursor-pointer group relative overflow-hidden aspect-[16/10] bg-gradient-to-br from-[#1b2024] via-brand-surface to-brand-charcoal border border-white/5" data-img="" data-title="Modern Neoclassical Villa">
+      <!-- Bài viết mẫu dự phòng 2 -->
+      <article class="project-card cursor-pointer group relative overflow-hidden aspect-[16/10] bg-gradient-to-br from-[#1b2024] via-brand-surface to-brand-charcoal border border-white/5" data-images="[]" data-title="Modern Neoclassical Villa">
         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent"></div>
         <div class="absolute bottom-0 left-0 p-8">
           <p class="text-brand-gold text-sm mb-1">Biệt thự phố · Xa La, Hà Nội</p>
@@ -232,18 +235,34 @@ section[id]{scroll-margin-top:5rem}
   </div>
 </footer>
 
-<!-- Modal phóng to ảnh (Lightbox xem toàn màn hình) -->
-<div id="img-modal" class="fixed inset-0 z-[100] hidden bg-black/95 backdrop-blur-md flex items-center justify-center p-4">
-  <button id="close-modal" aria-label="Đóng" class="absolute top-6 right-6 text-white/70 hover:text-white p-2 text-3xl font-light focus:outline-none">&times;</button>
-  <div class="max-w-5xl max-h-[90vh] flex flex-col items-center">
-    <img id="modal-img" src="" alt="" class="max-w-full max-h-[80vh] object-contain rounded shadow-2xl border border-white/10">
-    <div id="modal-caption" class="mt-4 text-center text-brand-gold font-serif text-xl"></div>
+<!-- Modal Album xem ảnh nhiều tấm toàn màn hình -->
+<div id="img-modal" class="fixed inset-0 z-[100] hidden bg-black/95 backdrop-blur-md flex items-center justify-center select-none">
+  <!-- Nút đóng -->
+  <button id="close-modal" aria-label="Đóng" class="absolute top-6 right-6 text-white/70 hover:text-white p-2 text-4xl font-light focus:outline-none z-10">&times;</button>
+  
+  <!-- Nút Lùi ảnh -->
+  <button id="prev-btn" aria-label="Ảnh trước" class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-brand-gold hover:text-black transition flex items-center justify-center text-2xl z-10">
+    &#10094;
+  </button>
+
+  <!-- Khung ảnh chính -->
+  <div class="max-w-5xl max-h-[90vh] p-4 flex flex-col items-center">
+    <img id="modal-img" src="" alt="" class="max-w-full max-h-[75vh] object-contain rounded shadow-2xl border border-white/10 transition-all duration-300">
+    <div class="mt-4 text-center">
+      <h4 id="modal-caption" class="text-brand-gold font-serif text-xl"></h4>
+      <p id="modal-counter" class="text-brand-gray text-xs tracking-widest mt-1"></p>
+    </div>
   </div>
+
+  <!-- Nút Tiến ảnh -->
+  <button id="next-btn" aria-label="Ảnh kế tiếp" class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-brand-gold hover:text-black transition flex items-center justify-center text-2xl z-10">
+    &#10095;
+  </button>
 </div>
 
 <!-- Nút gọi nhanh trên điện thoại -->
 <a href="tel:0976105478" aria-label="Gọi 0976 105 478" class="lg:hidden fixed bottom-5 right-5 z-40 w-14 h-14 rounded-full bg-brand-gold text-black grid place-items-center shadow-lg">
-  <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"/></svg>
+  <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"/></svg>
 </a>
 
 <script>
@@ -276,33 +295,82 @@ f.addEventListener('submit',async e=>{
   st.textContent='Nội dung đã được sao chép. Hãy dán vào tin nhắn Facebook vừa mở, hoặc gọi 0976 105 478.';
 });
 
-// Xử lý đóng/mở phóng to ảnh (Lightbox)
-function initLightbox() {
-  const modal = document.getElementById('img-modal');
+// Trình xem Album ảnh đa phương tiện (Lightbox Slider)
+let activeGallery = [];
+let currentImgIndex = 0;
+let currentProjectTitle = '';
+
+function updateModalView() {
+  if (!activeGallery.length) return;
   const modalImg = document.getElementById('modal-img');
   const modalCaption = document.getElementById('modal-caption');
+  const modalCounter = document.getElementById('modal-counter');
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+
+  modalImg.src = activeGallery[currentImgIndex];
+  modalCaption.textContent = currentProjectTitle;
+  modalCounter.textContent = `${currentImgIndex + 1} / ${activeGallery.length}`;
+
+  // Ẩn nút điều hướng nếu dự án chỉ có đúng 1 ảnh
+  if (activeGallery.length <= 1) {
+    prevBtn.classList.add('hidden');
+    nextBtn.classList.add('hidden');
+  } else {
+    prevBtn.classList.remove('hidden');
+    nextBtn.classList.remove('hidden');
+  }
+}
+
+function initLightbox() {
+  const modal = document.getElementById('img-modal');
   const closeBtn = document.getElementById('close-modal');
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
 
   document.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('click', () => {
-      const src = card.getAttribute('data-img');
-      const title = card.getAttribute('data-title');
-      if (src) {
-        modalImg.src = src;
-        modalCaption.textContent = title || '';
+      try {
+        activeGallery = JSON.parse(card.getAttribute('data-images') || '[]');
+      } catch {
+        activeGallery = [];
+      }
+      currentProjectTitle = card.getAttribute('data-title') || '';
+      currentImgIndex = 0;
+
+      if (activeGallery.length > 0) {
+        updateModalView();
         modal.classList.remove('hidden');
       }
     });
   });
 
   const closeModal = () => modal.classList.add('hidden');
-  closeBtn.addEventListener('click', closeModal);
-  modal.addEventListener('click', (e) => {
+  const showPrev = (e) => {
+    if (e) e.stopPropagation();
+    currentImgIndex = (currentImgIndex - 1 + activeGallery.length) % activeGallery.length;
+    updateModalView();
+  };
+  const showNext = (e) => {
+    if (e) e.stopPropagation();
+    currentImgIndex = (currentImgIndex + 1) % activeGallery.length;
+    updateModalView();
+  };
+
+  closeBtn.onclick = closeModal;
+  prevBtn.onclick = showPrev;
+  nextBtn.onclick = showNext;
+
+  modal.onclick = (e) => {
     if (e.target === modal) closeModal();
-  });
-  document.addEventListener('keydown', (e) => {
+  };
+
+  document.onkeydown = (e) => {
+    if (modal.classList.contains('hidden')) return;
     if (e.key === 'Escape') closeModal();
-  });
+    if (e.key === 'ArrowLeft') showPrev();
+    if (e.key === 'ArrowRight') showNext();
+  };
 }
 
 // TỰ ĐỘNG ĐỌC VÀ HIỂN THỊ DỰ ÁN TỪ CMS
@@ -313,17 +381,11 @@ async function loadCMSProjects() {
   
   try {
     const res = await fetch(`https://api.github.com/repos/${repo}/contents/content/projects?ref=${branch}`);
-    if (!res.ok) {
-      initLightbox();
-      return;
-    }
+    if (!res.ok) { initLightbox(); return; }
     const files = await res.json();
     
     const mdFiles = files.filter(file => file.name.endsWith('.md'));
-    if (!mdFiles.length) {
-      initLightbox();
-      return;
-    }
+    if (!mdFiles.length) { initLightbox(); return; }
 
     const projectCards = await Promise.all(mdFiles.map(async file => {
       const contentRes = await fetch(file.download_url);
@@ -333,10 +395,27 @@ async function loadCMSProjects() {
       if (!match) return null;
       
       const lines = match[1].split('\n');
-      const data = {};
+      const data = { gallery: [] };
+      let inGallery = false;
+
       lines.forEach(line => {
+        const trimmed = line.trim();
+        if (trimmed.startsWith('gallery:')) {
+          inGallery = true;
+          return;
+        }
+        if (inGallery) {
+          if (trimmed.startsWith('-')) {
+            const imgPath = trimmed.replace(/^-\s*/, '').replace(/["']/g, '').trim();
+            if (imgPath) data.gallery.push(imgPath);
+            return;
+          } else if (trimmed.includes(':')) {
+            inGallery = false;
+          }
+        }
+        
         const colonIndex = line.indexOf(':');
-        if (colonIndex !== -1) {
+        if (colonIndex !== -1 && !inGallery) {
           const key = line.slice(0, colonIndex).trim();
           let val = line.slice(colonIndex + 1).trim();
           if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
@@ -349,22 +428,40 @@ async function loadCMSProjects() {
     }));
 
     const validProjects = projectCards.filter(Boolean);
-    if (!validProjects.length) {
-      initLightbox();
-      return;
-    }
+    if (!validProjects.length) { initLightbox(); return; }
 
-    // Hiển thị danh sách dự án động lấy từ CMS
+    // Render danh sách công trình
     container.innerHTML = validProjects.map(p => {
       const location = p.location || 'Hà Nội';
       const style = p.style || 'Kiến trúc & Nội thất';
       const title = p.title || 'Dự án P-Space';
       const thumb = p.thumbnail ? p.thumbnail : '';
       
+      // Tập hợp tất cả ảnh vào 1 danh sách album (ưu tiên thumbnail đứng đầu)
+      const allImages = [];
+      if (thumb) allImages.push(thumb);
+      if (Array.isArray(p.gallery)) {
+        p.gallery.forEach(img => {
+          if (img && !allImages.includes(img)) allImages.push(img);
+        });
+      }
+
+      const imgCount = allImages.length;
+      const imagesJson = JSON.stringify(allImages).replace(/"/g, '&quot;');
+
       return `
-        <article class="project-card cursor-pointer group relative overflow-hidden aspect-[16/10] bg-brand-surface border border-white/5" data-img="${thumb}" data-title="${title}">
+        <article class="project-card cursor-pointer group relative overflow-hidden aspect-[16/10] bg-brand-surface border border-white/5" data-images="${imagesJson}" data-title="${title}">
           ${thumb ? `<img src="${thumb}" alt="${title}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">` : ''}
           <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+          
+          <!-- Huy hiệu đếm số lượng ảnh -->
+          ${imgCount > 1 ? `
+            <div class="absolute top-4 right-4 bg-black/70 backdrop-blur-sm border border-white/10 px-3 py-1 rounded text-xs text-brand-gold flex items-center gap-1.5">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              ${imgCount} ảnh
+            </div>
+          ` : ''}
+
           <div class="absolute bottom-0 left-0 p-8">
             <p class="text-brand-gold text-sm mb-1">${style} · ${location}</p>
             <h3 class="font-serif font-semibold text-3xl text-white">${title}</h3>
@@ -374,7 +471,6 @@ async function loadCMSProjects() {
       `;
     }).join('');
 
-    // Kích hoạt tính năng phóng to ảnh sau khi render xong
     initLightbox();
 
   } catch (err) {

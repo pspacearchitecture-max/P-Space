@@ -16,5 +16,10 @@ collections:
       - { label: "Tên công trình", name: "title", widget: "string" }
       - { label: "Địa điểm", name: "location", widget: "string" }
       - { label: "Phong cách thiết kế", name: "style", widget: "string" }
-      - { label: "Ảnh đại diện", name: "thumbnail", widget: "image" }
+      - { label: "Ảnh đại diện (Thumbnail)", name: "thumbnail", widget: "image" }
+      - label: "Bộ sưu tập ảnh công trình"
+        name: "gallery"
+        widget: "list"
+        required: false
+        field: { label: "Ảnh chi tiết", name: "image", widget: "image" }
       - { label: "Mô tả ngắn", name: "description", widget: "text" }

@@ -1,7 +1,7 @@
 backend:
   name: github
   repo: pspacearchitecture-max/P-Space
-  branch: test-cms
+  branch: Test-cms
 
 media_folder: "images/projects"
 public_folder: "/images/projects"
